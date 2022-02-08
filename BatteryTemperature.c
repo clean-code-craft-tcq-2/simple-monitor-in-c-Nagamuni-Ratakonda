@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "Bms.h"
 
 int IsTemperatureValid(float temperature) {
@@ -5,7 +6,6 @@ int IsTemperatureValid(float temperature) {
       printf("Temperature out of range!\n");
       return 0;
   }
-  else {
-    return 1;
-  }
+  
+  return 1;
 }
