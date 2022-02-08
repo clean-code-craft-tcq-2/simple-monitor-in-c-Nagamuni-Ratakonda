@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
+#include "Bms.h"
 
 int batteryIsOk(float temperature, float soc, float chargeRate) {
   int TemperatureCheck = IsTemperatureValid(temperature);
