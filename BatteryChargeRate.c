@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "Bms.h>
+#include "Bms.h"
 
 int IsChargeRateValid(float chargeRate) {
   if(chargeRate > CHARGERATE_MAX) {
