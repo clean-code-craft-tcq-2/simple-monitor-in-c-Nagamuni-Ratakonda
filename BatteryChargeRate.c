@@ -2,7 +2,8 @@
 #include "Bms.h"
 
 int IsChargeRateValid(float chargeRate) {
-  if(chargeRate > CHARGERATE_MAX) {
+  if(chargeRate > 0.8)
+  {
       printf("Charge Rate out of range!\n");
       return 0;
   }
