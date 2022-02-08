@@ -2,14 +2,19 @@
 #include <assert.h>
 #include "Bms.h"
 
-int batteryIsOk(float temperature, float soc, float chargeRate) {
-  int TemperatureCheck = IsTemperatureValid(temperature);
-  int SOCCheck = IsSOCValid(soc);
-  int ChargeRateCheck = IsChargeRateValid(chargeRate);
+int batteryIsOk(float temperature, float soc, float chargeRate, int(*IsTemperatureValid_FuncPtr)(float), int(IsSOCValid_FuncPtr)(float), int(*IsChargeRateValid_FncPtr)(float)) {
+  int TemperatureCheck = IsTemperatureValid_FuncPtr(temperature);
+  int SOCCheck = IsSOCValid_FuncPtr(soc);
+  int ChargeRateCheck = IsChargeRateValid_FncPtr(chargeRate);
   return (TemperatureCheck && SOCCheck && ChargeRateCheck);
 }
 
 int main() {
   assert(batteryIsOk(25, 70, 0.7));
   assert(!batteryIsOk(50, 85, 0));
+  assert(!batteryIsOk(45, 70, 0.7));
+  assert(!batteryIsOk(0, 70, 0.7));
+  assert(!batteryIsOk(10, 20, 0.7));
+  assert(!batteryIsOk(10, 80, 0.7));
+  assert(!batteryIsOk(10, 40, 0.8));
 }
