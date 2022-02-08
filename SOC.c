@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "Bms.h"
 
 int IsSOCValid(float soc) {
@@ -5,7 +6,6 @@ int IsSOCValid(float soc) {
       printf("State of Charge out of range!\n");
       return 0;
   }
-  else {
-    return 1;
-  }
+  
+  return 1;
 }
