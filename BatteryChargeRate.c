@@ -11,5 +11,5 @@ int IsChargeRateValid(float chargeRate)
 }
 
 int BatteryChargeRate(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning) {
-  return (IsChargeRateValid(chargeRate) && (CheckForEarlyWarning(BATTERYPARAMETER_TEMPERATURE, ParamWithEarlyWarning)));
+  return (IsChargeRateValid(chargeRate) && (CheckForEarlyWarning(BATTERYPARAMETER_TEMPERATURE, chargeRate)));
 }
