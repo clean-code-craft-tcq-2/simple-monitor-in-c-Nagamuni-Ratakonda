@@ -93,7 +93,7 @@ bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue)
   return EarlyWarning;
 }
 
-bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, int(*IsTemperatureValid_FuncPtr)(float), int(IsSOCValid_FuncPtr)(float), int(*IsChargeRateValid_FncPtr)(float)){
+bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, bool(*IsTemperatureValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(IsSOCValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(*IsChargeRateValid_FncPtr)(float,EarlyWarningForBatteryParameters)){
   bool TemperatureCheck = IsTemperatureValid_FuncPtr(temperature,ParamWithEarlyWarning);
   bool SOCCheck = IsSOCValid_FuncPtr(soc,ParamWithEarlyWarning);
   bool ChargeRateCheck = IsChargeRateValid_FncPtr(chargeRate,ParamWithEarlyWarning);
