@@ -3,10 +3,10 @@
 #include "Bms.h"
 
 int batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, int(*IsTemperatureValid_FuncPtr)(float), int(IsSOCValid_FuncPtr)(float), int(*IsChargeRateValid_FncPtr)(float)){
-  int TemperatureCheck = IsTemperatureValid_FuncPtr(temperature);
-  int SOCCheck = IsSOCValid_FuncPtr(soc);
-  int ChargeRateCheck = IsChargeRateValid_FncPtr(chargeRate);
-  return (TemperatureCheck && SOCCheck && ChargeRateCheck);
+  int TemperatureCheck = IsTemperatureValid_FuncPtr(temperature,ParamWithEarlyWarning);
+  int SOCCheck = IsSOCValid_FuncPtr(soc,ParamWithEarlyWarning);
+  int ChargeRateCheck = IsChargeRateValid_FncPtr(chargeRate,ParamWithEarlyWarning);
+  return (TemperatureCheck && SOCCheck && ChargeRateCheck,ParamWithEarlyWarning);
 }
 
 int main() {
