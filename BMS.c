@@ -14,7 +14,7 @@ void PrintEarlyWarningForLowTolerance(int BatteryParameter)
   printf("Lower Tolerance limit approached for %s",ParameterName[BatteryParameter]);
 }
 
-float getHigherToleranceValue(int BatteryParameter, int BatteryParameterValue)
+float getHigherToleranceValue(int BatteryParameter)
 {
   float higherToleranceValue = 0;
   
