@@ -2,7 +2,7 @@
 #include <assert.h>
 #include "Bms.h"
 
-char ParameterName[3] = {"Temperature","SOC","ChargeRate"};
+char ParameterName[][20] = {"Temperature","SOC","ChargeRate"};
 
 void PrintEarlyWarningForHighTolerance(int BatteryParameter)
 {
