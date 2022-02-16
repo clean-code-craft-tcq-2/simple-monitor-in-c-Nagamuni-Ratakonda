@@ -24,10 +24,10 @@ typedef enum
   WarningForNone = 4
 }EarlyWarningForBatteryParameters;
 
-int IsChargeRateValid(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
-int IsSOCValid(float soc, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
-int IsTemperatureValid(float temperature, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
-int batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, int(*IsTemperatureValid_FuncPtr)(float), int(IsSOCValid_FuncPtr)(float), int(*IsChargeRateValid_FncPtr)(float));
+bool IsChargeRateValid(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
+bool IsSOCValid(float soc, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
+bool IsTemperatureValid(float temperature, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
+bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, int(*IsTemperatureValid_FuncPtr)(float), int(IsSOCValid_FuncPtr)(float), int(*IsChargeRateValid_FncPtr)(float));
 bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue);
 bool IsToleranceLowerLimitApproached(int BatteryParameter, int BatteryParameterValue);
 bool IsToleranceUpperLimitApproached(int BatteryParameter, int BatteryParameterValue);
