@@ -26,7 +26,8 @@ typedef enum
   WarningForNone = 4
 }EarlyWarningForBatteryParameters;
 
-bool IsChargeRateValid(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
+bool IsChargeRateValid(float chargeRate);
+bool BatteryChargeRate(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
 bool IsSOCValid(float soc, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
 bool IsTemperatureValid(float temperature, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
 bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, bool(*IsTemperatureValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(IsSOCValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(*IsChargeRateValid_FncPtr)(float,EarlyWarningForBatteryParameters));
