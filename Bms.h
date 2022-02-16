@@ -6,7 +6,16 @@
 
 #define CHARGERATE_MAX 0.8
 
+typedef enum
+{
+  WarningForNone = 0,
+  WarningForTemperature = 1,
+  WarningForSOC = 2,
+  WarningForChargeRate = 3,
+  WarningForAll = 4
+}EarlyWarningForBatteryParameters;
+
 int IsChargeRateValid(float chargeRate);
 int IsSOCValid(float soc);
 int IsTemperatureValid(float temperature);
-int batteryIsOk(float temperature, float soc, float chargeRate, int(*IsTemperatureValid_FuncPtr)(float), int(IsSOCValid_FuncPtr)(float), int(*IsChargeRateValid_FncPtr)(float));
+int batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, int(*IsTemperatureValid_FuncPtr)(float), int(IsSOCValid_FuncPtr)(float), int(*IsChargeRateValid_FncPtr)(float));
