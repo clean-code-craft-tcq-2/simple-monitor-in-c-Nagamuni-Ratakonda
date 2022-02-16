@@ -15,7 +15,7 @@ typedef enum
   WarningForAll = 4
 }EarlyWarningForBatteryParameters;
 
-int IsChargeRateValid(float chargeRate);
-int IsSOCValid(float soc);
-int IsTemperatureValid(float temperature);
+int IsChargeRateValid(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
+int IsSOCValid(float soc, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
+int IsTemperatureValid(float temperature, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
 int batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, int(*IsTemperatureValid_FuncPtr)(float), int(IsSOCValid_FuncPtr)(float), int(*IsChargeRateValid_FncPtr)(float));
