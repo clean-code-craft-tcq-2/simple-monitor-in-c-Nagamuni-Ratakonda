@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "Bms.h"
 
-int IsChargeRateValid(float chargeRate) {
+int IsChargeRateValid(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning) {
   
   if(chargeRate > CHARGERATE_MAX )
   {
