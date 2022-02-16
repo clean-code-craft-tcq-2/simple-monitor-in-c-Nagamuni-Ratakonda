@@ -13,16 +13,25 @@
 #define TOLERANCE_LOWERLIMIT_APPROACHED 0
 #define TOLERANCE_HIGHERLIMIT_APPROACHED 1
 
+#define TOLERANCE_PERCENTILE 5
+
 typedef enum
 {
-  WarningForNone = 0,
-  WarningForTemperature = 1,
-  WarningForSOC = 2,
-  WarningForChargeRate = 3,
-  WarningForAll = 4
+  WarningForTemperature = 0,
+  WarningForSOC = 1,
+  WarningForChargeRate = 2,
+  WarningForAll = 3,
+  WarningForNone = 4
 }EarlyWarningForBatteryParameters;
 
 int IsChargeRateValid(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
 int IsSOCValid(float soc, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
 int IsTemperatureValid(float temperature, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
 int batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, int(*IsTemperatureValid_FuncPtr)(float), int(IsSOCValid_FuncPtr)(float), int(*IsChargeRateValid_FncPtr)(float));
+bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue);
+bool IsToleranceLowerLimitApproached(int BatteryParameter, int BatteryParameterValue);
+bool IsToleranceUpperLimitApproached(int BatteryParameter, int BatteryParameterValue);
+float getLowerToleranceValue(int BatteryParameter);
+float getHigherToleranceValue(int BatteryParameter, int BatteryParameterValue);
+PrintEarlyWarningForLowTolerance(int BatteryParameter);
+PrintEarlyWarningForHighTolerance(int BatteryParameter);
