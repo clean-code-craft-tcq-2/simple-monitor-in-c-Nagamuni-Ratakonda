@@ -80,7 +80,7 @@ bool IsToleranceLowerLimitApproached(int BatteryParameter, int BatteryParameterV
   return true;
 }
 
-bool CheckForEarlyWarning(int BatteryParameter, int BatteryParameterValue)
+bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue)
 {
   int EarlyWarning = false;
   
