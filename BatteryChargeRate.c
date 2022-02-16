@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include "Bms.h"
 
-int IsChargeRateValid(float chargeRate)
+bool IsChargeRateValid(float chargeRate)
 {
   if(chargeRate > CHARGERATE_MAX )
   {
     printf("Charge Rate out of range!\n");
-    return 0;
+    return false;
   }
+  
+  return true;
 }
 
-int BatteryChargeRate(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning) {
+bool BatteryChargeRate(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning) {
   return (IsChargeRateValid(chargeRate) && (CheckForEarlyWarning(BATTERYPARAMETER_TEMPERATURE, chargeRate)));
 }
