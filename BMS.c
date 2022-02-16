@@ -20,15 +20,15 @@ float getHigherToleranceValue(int BatteryParameter, int BatteryParameterValue)
   
   if(BatteryParameter == BATTERYPARAMETER_TEMPERATURE )
   {
-    higherToleranceValue = (float)((5/100)*TEMPERATURE_MAX);
+    higherToleranceValue = (float)((TOLERANCE_PERCENTILE/100)*TEMPERATURE_MAX);
   }
   else if(BatteryParameter == BATTERYPARAMETER_SOC )
   {
-    higherToleranceValue = (float)((5/100)*SOC_MAX );
+    higherToleranceValue = (float)((TOLERANCE_PERCENTILE/100)*SOC_MAX );
   }
   else
   {
-    higherToleranceValue = (float)((5/100)*CHARGERATE_MAX  );
+    higherToleranceValue = (float)((TOLERANCE_PERCENTILE/100)*CHARGERATE_MAX  );
   }
   
   return higherToleranceValue;
@@ -40,15 +40,15 @@ float getLowerToleranceValue(int BatteryParameter)
   
   if(BatteryParameter == BATTERYPARAMETER_TEMPERATURE )
   {
-    lowerToleranceValue = (float)((5/100)*TEMPERATURE_MIN );
+    lowerToleranceValue = (float)((TOLERANCE_PERCENTILE/100)*TEMPERATURE_MIN );
   }
   else if(BatteryParameter == BATTERYPARAMETER_SOC )
   {
-    lowerToleranceValue = (float)((5/100)*SOC_MIN  );
+    lowerToleranceValue = (float)((TOLERANCE_PERCENTILE/100)*SOC_MIN  );
   }
   else
   {
-    lowerToleranceValue = (float)((5/100)*CHARGERATE_MAX  );
+    lowerToleranceValue = (float)((TOLERANCE_PERCENTILE/100)*CHARGERATE_MAX  );
   }
   
   return lowerToleranceValue;
