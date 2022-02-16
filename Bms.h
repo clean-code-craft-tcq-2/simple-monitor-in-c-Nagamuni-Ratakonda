@@ -10,6 +10,9 @@
 
 #define CHARGERATE_MAX 0.8
 
+#define TOLERANCE_LOWERLIMIT_APPROACHED 0
+#define TOLERANCE_HIGHERLIMIT_APPROACHED 1
+
 typedef enum
 {
   WarningForNone = 0,
