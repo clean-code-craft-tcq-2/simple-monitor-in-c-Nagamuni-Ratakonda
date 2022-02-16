@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "Bms.h"
 
-int IsTemperatureValid(float temperature, EarlyWarningForBatteryParameters ParamWithEarlyWarning) {
+bool IsTemperatureValid(float temperature, EarlyWarningForBatteryParameters ParamWithEarlyWarning) {
   if(temperature < TEMPERATURE_MIN || temperature > TEMPERATURE_MAX) {
       printf("Temperature out of range!\n");
-      return 0;
+      return false;
   }
   
-  return 1;
+  return true;
 }
