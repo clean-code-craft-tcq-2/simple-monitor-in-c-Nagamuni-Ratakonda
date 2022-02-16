@@ -4,12 +4,12 @@
 
 char ParameterName[3] = {"Temperature","SOC","ChargeRate"};
 
-PrintEarlyWarningForHighTolerance(int BatteryParameter)
+void PrintEarlyWarningForHighTolerance(int BatteryParameter)
 {
   printf("Higher Tolerance limit approached for %s",ParameterName[BatteryParameter]);
 }
 
-PrintEarlyWarningForLowTolerance(int BatteryParameter)
+void PrintEarlyWarningForLowTolerance(int BatteryParameter)
 {
   printf("Lower Tolerance limit approached for %s",ParameterName[BatteryParameter]);
 }
