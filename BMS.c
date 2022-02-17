@@ -94,15 +94,15 @@ bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue)
 }
 
 bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, bool(*IsTemperatureValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(IsSOCValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(*IsChargeRateValid_FncPtr)(float,EarlyWarningForBatteryParameters)){
-  bool TemperatureCheck = IsTemperatureValid_FuncPtr(temperature,ParamWithEarlyWarning);
-  bool SOCCheck = IsSOCValid_FuncPtr(soc,ParamWithEarlyWarning);
-  bool ChargeRateCheck = IsChargeRateValid_FncPtr(chargeRate,ParamWithEarlyWarning);
-  return (TemperatureCheck && SOCCheck && ChargeRateCheck,ParamWithEarlyWarning);
+  bool TemperatureCheck = BatteryTemperature(temperature,ParamWithEarlyWarning);
+  bool SOCCheck = SOC(soc,ParamWithEarlyWarning);
+  bool ChargeRateCheck = BatteryChargeRate(chargeRate,ParamWithEarlyWarning);
+  return (TemperatureCheck && SOCCheck && ChargeRateCheck);
 }
 
 int main() {
-  assert(batteryIsOk(25, 70, 0.7,WarningForNone,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
-  assert(batteryIsOk(0, 20, 0.7,WarningForAll,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
+  assert(batteryIsOk(25, 70, 0.7,WarningForNone,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(batteryIsOk(0, 20, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
   /*assert(batteryIsOk(45, 80, 0.7,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
   assert(!batteryIsOk(50, 85, 0,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
   assert(!batteryIsOk(46, 70, 0.7,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
