@@ -19,7 +19,7 @@ bool BatteryChargeRate(float chargeRate, EarlyWarningForBatteryParameters ParamW
   batteryChargeRateResult = IsChargeRateValid(chargeRate);
   if(batteryChargeRateResult)
   {
-    if(ParamWithEarlyWarning != WarningForNone)
+    if(isEarlyWarningRequested(BATTERYPARAMETER_CHARGERATE,ParamWithEarlyWarning))
     {
        batteryChargeRateResult = CheckForEarlyWarning(BATTERYPARAMETER_CHARGERATE , chargeRate);
     }
