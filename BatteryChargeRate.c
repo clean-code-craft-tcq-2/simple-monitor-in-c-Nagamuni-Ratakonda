@@ -13,5 +13,17 @@ bool IsChargeRateValid(float chargeRate)
 }
 
 bool BatteryChargeRate(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning) {
-  return (IsChargeRateValid(chargeRate) && (CheckForEarlyWarning(BATTERYPARAMETER_TEMPERATURE, chargeRate)));
+  
+  bool batteryChargeRateResult = false;
+  
+  batteryChargeRateResult = IsChargeRateValid(chargeRate);
+  if(batteryChargeRateResult)
+  {
+    if(ParamWithEarlyWarning != WarningForNone)
+    {
+       batteryChargeRateResult = CheckForEarlyWarning(BATTERYPARAMETER_TEMPERATURE, chargeRate);
+    }
+  }
+  
+  return batteryChargeRateResult;
 }
