@@ -36,7 +36,7 @@ bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningFor
 bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue);
 bool IsToleranceLowerLimitApproached(int BatteryParameter, float BatteryParameterValue);
 bool IsToleranceUpperLimitApproached(int BatteryParameter, float BatteryParameterValue);
-float getLowerToleranceValue(int BatteryParameter, float BatteryParameterValue);
-float getHigherToleranceValue(int BatteryParameter,float BatteryParameterValue);
+float getLowerToleranceValue(int BatteryParameter);
+float getHigherToleranceValue(int BatteryParameter);
 void PrintEarlyWarningForLowTolerance(int BatteryParameter);
 void PrintEarlyWarningForHighTolerance(int BatteryParameter);
