@@ -61,10 +61,10 @@ bool IsToleranceUpperLimitApproached(int BatteryParameter, int BatteryParameterV
   if(HigherToleranceValue == (BatteryParameterValue-HigherToleranceValue))
   {
     PrintEarlyWarningForHighTolerance(BatteryParameter);
-    return false;
+    return true;
   }
   
-  return true;
+  return false;
 }
 
 bool IsToleranceLowerLimitApproached(int BatteryParameter, int BatteryParameterValue)
@@ -74,10 +74,10 @@ bool IsToleranceLowerLimitApproached(int BatteryParameter, int BatteryParameterV
   if(lowerToleranceValue == (BatteryParameterValue+lowerToleranceValue))
   {
     PrintEarlyWarningForLowTolerance(BatteryParameter);
-    return false;
+    return true;
   }
   
-  return true;
+  return false;
 }
 
 bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue)
