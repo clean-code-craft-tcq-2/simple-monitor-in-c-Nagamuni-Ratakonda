@@ -101,10 +101,17 @@ bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningFor
 }
 
 int main() {
+  /* Early warning not requested: Testcases to check that early warning is not given even though tolerance limit approached */
   assert(batteryIsOk(25, 70, 0.7,WarningForNone,&BatteryTemperature,&SOC,&BatteryChargeRate));
-  assert(batteryIsOk(0, 20, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
-  /*assert(batteryIsOk(45, 80, 0.7,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
-  assert(!batteryIsOk(50, 85, 0,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
+  assert(batteryIsOk(0, 20, 0.7,WarningForNone,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(batteryIsOk(45, 80, 0.7,WarningForNone,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
+  
+  /* Early warning requested for all parameters: Testcases to check that early warning is given for all parameters when tolerance limit approached */
+  assert(!batteryIsOk(25, 70, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(!batteryIsOk(0, 20, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(!batteryIsOk(45, 80, 0.7,WarningForAll,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
+  
+  /*assert(!batteryIsOk(50, 85, 0,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
   assert(!batteryIsOk(46, 70, 0.7,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
   assert(!batteryIsOk(-1, 70, 0.7,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
   assert(!batteryIsOk(10, 18, 0.7,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
