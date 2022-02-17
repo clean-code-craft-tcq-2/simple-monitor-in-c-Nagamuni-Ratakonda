@@ -17,7 +17,7 @@ bool SOC(float soc, EarlyWarningForBatteryParameters ParamWithEarlyWarning){
   SOCResult = IsSOCValid(soc);
   if(SOCResult)
   {
-    if(ParamWithEarlyWarning != WarningForNone)
+    if(isEarlyWarningRequested(BATTERYPARAMETER_SOC,ParamWithEarlyWarning))
     {
       SOCResult = CheckForEarlyWarning(BATTERYPARAMETER_SOC, soc);
     }
