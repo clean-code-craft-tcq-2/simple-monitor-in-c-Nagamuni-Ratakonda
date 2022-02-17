@@ -28,8 +28,10 @@ typedef enum
 
 bool IsChargeRateValid(float chargeRate);
 bool BatteryChargeRate(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
-bool IsSOCValid(float soc, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
-bool IsTemperatureValid(float temperature, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
+bool SOC(float soc, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
+bool IsSOCValid(float soc);
+bool BatteryTemperature(float temperature, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
+bool IsTemperatureValid(float temperature);
 bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, bool(*IsTemperatureValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(IsSOCValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(*IsChargeRateValid_FncPtr)(float,EarlyWarningForBatteryParameters));
 bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue);
 bool IsToleranceLowerLimitApproached(int BatteryParameter, int BatteryParameterValue);
