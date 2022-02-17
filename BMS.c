@@ -97,7 +97,7 @@ bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningFor
   bool TemperatureCheck = BatteryTemperature_FuncPtr(temperature,ParamWithEarlyWarning);
   bool SOCCheck = BatterySOC_FuncPtr(soc,ParamWithEarlyWarning);
   bool ChargeRateCheck = BatteryChargeRate_FncPtr(chargeRate,ParamWithEarlyWarning);
-  return (TemperatureCheck && SOCCheck && ChargeRateCheck);
+  return (TemperatureCheck || SOCCheck || ChargeRateCheck);
 }
 
 int main() {
