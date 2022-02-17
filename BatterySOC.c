@@ -19,7 +19,7 @@ bool SOC(float soc, EarlyWarningForBatteryParameters ParamWithEarlyWarning){
   {
     if(ParamWithEarlyWarning != WarningForNone)
     {
-      SOCResult = CheckForEarlyWarning(WarningForSOC, soc);
+      SOCResult = CheckForEarlyWarning(BATTERYPARAMETER_SOC, soc);
     }
   }
   
