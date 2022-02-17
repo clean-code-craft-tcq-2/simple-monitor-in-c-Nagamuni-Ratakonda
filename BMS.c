@@ -58,7 +58,7 @@ bool IsToleranceUpperLimitApproached(int BatteryParameter, int BatteryParameterV
 {
   float HigherToleranceValue = getHigherToleranceValue(BatteryParameter);
   
-  if(HigherToleranceValue == (BatteryParameterValue-HigherToleranceValue))
+  if(HigherToleranceValue >= (BatteryParameterValue-HigherToleranceValue))
   {
     PrintEarlyWarningForHighTolerance(BatteryParameter);
     return true;
@@ -71,7 +71,7 @@ bool IsToleranceLowerLimitApproached(int BatteryParameter, int BatteryParameterV
 {
   float lowerToleranceValue = getLowerToleranceValue(BatteryParameter);
   
-  if(lowerToleranceValue == (BatteryParameterValue+lowerToleranceValue))
+  if(lowerToleranceValue <= (BatteryParameterValue+lowerToleranceValue))
   {
     PrintEarlyWarningForLowTolerance(BatteryParameter);
     return true;
