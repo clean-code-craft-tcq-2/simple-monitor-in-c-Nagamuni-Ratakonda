@@ -4,6 +4,16 @@
 
 char ParameterName[][20] = {"Temperature","SOC","ChargeRate"};
 
+bool isEarlyWarningRequested(int BatteryParameter, EarlyWarningForBatteryParameters ParamWithEarlyWarning)
+{
+  if((ParamWithEarlyWarning == WarningForAll) || (ParamWithEarlyWarning == BatteryParameter))
+  {
+    return true;
+  }
+  
+  return false;
+}
+
 void PrintEarlyWarningForHighTolerance(int BatteryParameter)
 {
   printf("Higher Tolerance limit approached for %s",ParameterName[BatteryParameter]);
