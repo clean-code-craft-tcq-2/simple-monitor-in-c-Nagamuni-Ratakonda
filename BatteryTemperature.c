@@ -3,7 +3,7 @@
 
 bool IsTemperatureValid(float temperature) {
   if(temperature < TEMPERATURE_MIN || temperature > TEMPERATURE_MAX) {
-      printf("Temperature out of range!\n");
+      PrintInvalidParameterRange(BATTERYPARAMETER_TEMPERATURE);
       return false;
   }
   
