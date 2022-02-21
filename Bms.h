@@ -27,13 +27,20 @@ typedef enum
   WarningForNone = 4
 }EarlyWarningForBatteryParameters;
 
+typedef enum
+{
+  English = 0,
+  German,
+  TotalLanguages
+}earlyWarningLanguages_en;
+
 bool IsChargeRateValid(float chargeRate);
 bool BatteryChargeRate(float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
 bool SOC(float soc, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
 bool IsSOCValid(float soc);
 bool BatteryTemperature(float temperature, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
 bool IsTemperatureValid(float temperature);
-bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, bool(*IsTemperatureValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(IsSOCValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(*IsChargeRateValid_FncPtr)(float,EarlyWarningForBatteryParameters));
+bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, earlyWarningLanguages_en Language, bool(*IsTemperatureValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(IsSOCValid_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(*IsChargeRateValid_FncPtr)(float,EarlyWarningForBatteryParameters));
 bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue);
 bool IsToleranceLowerLimitApproached(int BatteryParameter, float BatteryParameterValue);
 bool IsToleranceUpperLimitApproached(int BatteryParameter, float BatteryParameterValue);
