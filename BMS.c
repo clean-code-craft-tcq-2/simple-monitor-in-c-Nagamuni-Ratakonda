@@ -100,7 +100,7 @@ bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue)
     EarlyWarning = IsToleranceUpperLimitApproached(BatteryParameter,BatteryParameterValue);
   }
   
-  return EarlyWarning;
+  return (!EarlyWarning);
 }
 
 bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, bool(*BatteryTemperature_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(BatterySOC_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(*BatteryChargeRate_FncPtr)(float,EarlyWarningForBatteryParameters)){
