@@ -3,7 +3,7 @@
 
 bool IsSOCValid(float soc) {
   if(soc < SOC_MIN || soc > SOC_MAX) {
-      printf("State of Charge out of range!\n");
+      PrintInvalidParameterRange(BATTERYPARAMETER_SOC);
       return false;
   }
   
