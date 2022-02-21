@@ -116,8 +116,10 @@ int main() {
   assert(batteryIsOk(0, 20, 0.7,WarningForNone,&BatteryTemperature,&SOC,&BatteryChargeRate));
   assert(batteryIsOk(45, 80, 0.7,WarningForNone,&BatteryTemperature,&SOC,&BatteryChargeRate));
   
-  /* Early warning requested for all parameters: Testcases to check that early warning is given for all parameters when tolerance limit approached */
-  assert(!batteryIsOk(25, 70, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  /* Early warning requested for all parameters: Testcases to check that early warning is not given for the parameters when tolerance limit is not approached */
+  assert(batteryIsOk(25, 70, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  
+  /* Early warning requested for all parameters: Testcases to check that early warning is given for the parameters whose tolerance limit is approached */
   assert(!batteryIsOk(0, 20, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
   assert(!batteryIsOk(45, 80, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
   
