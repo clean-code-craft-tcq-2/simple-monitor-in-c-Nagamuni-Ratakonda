@@ -3,7 +3,7 @@
 
 bool IsChargeRateValid(float chargeRate)
 {
-  if((chargeRate < CHARGERATE_MIN ) || (chargeRate > CHARGERATE_MAX ))
+  if(chargeRate < 0.0 || chargeRate > 0.8)
   {
     printf("Charge Rate out of range!\n");
     return false;
@@ -21,7 +21,7 @@ bool BatteryChargeRate(float chargeRate, EarlyWarningForBatteryParameters ParamW
   {
     if(isEarlyWarningRequested(BATTERYPARAMETER_CHARGERATE,ParamWithEarlyWarning))
     {
-       batteryChargeRateResult = CheckForEarlyWarning(BATTERYPARAMETER_CHARGERATE , chargeRate);
+       batteryChargeRateResult = CheckForEarlyWarning(BATTERYPARAMETER_CHARGERATE, chargeRate);
     }
   }
   
