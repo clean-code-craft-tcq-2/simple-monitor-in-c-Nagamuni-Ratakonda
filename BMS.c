@@ -124,7 +124,7 @@ int main() {
   
   /* Early warning requested for all parameters: Testcases to check that early warning is given for the parameters whose tolerance limit is approached */
   assert(!batteryIsOk(0, 20, 0.0,WarningForAll,English,&BatteryTemperature,&SOC,&BatteryChargeRate)); //Low tolerance approach
-  assert(!batteryIsOk(45, 80, 0.8,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate)); //High tolerance approach
+  assert(!batteryIsOk(45, 80, 0.8,WarningForAll,English,&BatteryTemperature,&SOC,&BatteryChargeRate)); //High tolerance approach
   
   /* Early warning requested for only temperature: Testcase to check that early warning is given only for temperature even when other parameters tolerance approached */
   assert(!batteryIsOk(0, 20, 0.7,WarningForTemperature,English,&BatteryTemperature,&SOC,&BatteryChargeRate)); //Low tolerance
