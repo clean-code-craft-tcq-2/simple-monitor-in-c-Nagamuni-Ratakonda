@@ -58,7 +58,7 @@ float getLowerToleranceValue(int BatteryParameter)
   }
   else
   {
-    lowerToleranceValue = (float)(((TOLERANCE_PERCENTILE/100)*CHARGERATE_MAX)+CHARGERATE_MAX);
+    lowerToleranceValue = (float)(((TOLERANCE_PERCENTILE/100)*CHARGERATE_MAX)+CHARGERATE_MIN);
   }
   
   return lowerToleranceValue;
