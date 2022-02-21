@@ -6,6 +6,11 @@ char ParameterName[][20] = {"Temperature","SOC","ChargeRate"};
 char *WarningLanguages[TotalLanguages][20] = {{"High Tolerance approaching for ","Low Tolerance approaching for"},{"Hohe Toleranz nähert sich für ","Niedrige Toleranz nähert sich für "}};
 earlyWarningLanguages_en languageNumber = 0;
 
+void PrintInvalidParameterRange(int BatteryParameter)
+{
+  printf("%s out of range\n",ParameterName[BatteryParameter]);
+}
+
 bool isEarlyWarningRequested(int BatteryParameter, EarlyWarningForBatteryParameters ParamWithEarlyWarning)
 {
   if((ParamWithEarlyWarning == WarningForAll) || (ParamWithEarlyWarning == BatteryParameter))
