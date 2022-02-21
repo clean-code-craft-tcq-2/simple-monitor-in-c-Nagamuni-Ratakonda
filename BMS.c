@@ -123,6 +123,15 @@ int main() {
   assert(!batteryIsOk(0, 20, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
   assert(!batteryIsOk(45, 80, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
   
+  /* Early warning requested for only temperature: Testcase to check that early warning is given only for temperature even when other parameters tolerance approached */
+  assert(!batteryIsOk(0, 20, 0.7,WarningForTemperature,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  
+  /* Early warning requested for only SOC: Testcase to check that early warning is given only for SOC even when other parameters tolerance approached */
+  assert(!batteryIsOk(45, 80, 0.7,WarningForSOC,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  
+  /* Early warning requested for only ChargeRate: Testcase to check that early warning is given only for ChargeRate even when other parameters tolerance approached */
+  assert(!batteryIsOk(45, 80, 0.8,WarningForSOC,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  
   /*assert(!batteryIsOk(50, 85, 0,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
   assert(!batteryIsOk(46, 70, 0.7,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
   assert(!batteryIsOk(-1, 70, 0.7,&IsTemperatureValid,&IsSOCValid,&IsChargeRateValid));
