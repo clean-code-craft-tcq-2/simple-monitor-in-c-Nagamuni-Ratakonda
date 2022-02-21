@@ -50,11 +50,11 @@ float getLowerToleranceValue(int BatteryParameter)
   
   if(BatteryParameter == BATTERYPARAMETER_TEMPERATURE )
   {
-    lowerToleranceValue = (float)(((TOLERANCE_PERCENTILE/100)*TEMPERATURE_MIN )+TEMPERATURE_MIN);
+    lowerToleranceValue = (float)(((TOLERANCE_PERCENTILE/100)*TEMPERATURE_MAX )+TEMPERATURE_MIN);
   }
   else if(BatteryParameter == BATTERYPARAMETER_SOC )
   {
-    lowerToleranceValue = (float)(((TOLERANCE_PERCENTILE/100)*SOC_MIN)+SOC_MIN);
+    lowerToleranceValue = (float)(((TOLERANCE_PERCENTILE/100)*SOC_MAX)+SOC_MIN);
   }
   else
   {
