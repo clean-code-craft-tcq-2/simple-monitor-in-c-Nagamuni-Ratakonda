@@ -3,6 +3,8 @@
 #include "Bms.h"
 
 char ParameterName[][20] = {"Temperature","SOC","ChargeRate"};
+char *WarningLanguages[TotalLanguages][20] = {{"HighTolerance","LowTolerance"},{"HoheToleranz","Geringe Toleranz"}};
+earlyWarningLanguages_en languageNumber = 0;
 
 bool isEarlyWarningRequested(int BatteryParameter, EarlyWarningForBatteryParameters ParamWithEarlyWarning)
 {
@@ -16,12 +18,12 @@ bool isEarlyWarningRequested(int BatteryParameter, EarlyWarningForBatteryParamet
 
 void PrintEarlyWarningForHighTolerance(int BatteryParameter)
 {
-  printf("Higher Tolerance limit approached for %s\n",ParameterName[BatteryParameter]);
+  printf("%s limit approaching for %s\n",WarningLanguages[languageNumber][0],ParameterName[BatteryParameter]);
 }
 
 void PrintEarlyWarningForLowTolerance(int BatteryParameter)
 {
-  printf("Lower Tolerance limit approached for %s\n",ParameterName[BatteryParameter]);
+  printf("%s limit approached for %s\n",WarningLanguages[languageNumber][1],ParameterName[BatteryParameter]);
 }
 
 float getHigherToleranceValue(int BatteryParameter)
@@ -103,7 +105,8 @@ bool CheckForEarlyWarning(int BatteryParameter, float BatteryParameterValue)
   return (!EarlyWarning);
 }
 
-bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, bool(*BatteryTemperature_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(BatterySOC_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(*BatteryChargeRate_FncPtr)(float,EarlyWarningForBatteryParameters)){
+bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningForBatteryParameters ParamWithEarlyWarning, earlyWarningLanguages_en Language, bool(*BatteryTemperature_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(BatterySOC_FuncPtr)(float,EarlyWarningForBatteryParameters), bool(*BatteryChargeRate_FncPtr)(float,EarlyWarningForBatteryParameters)){
+  languageNumber = Language;
   bool TemperatureCheck = BatteryTemperature_FuncPtr(temperature,ParamWithEarlyWarning);
   bool SOCCheck = BatterySOC_FuncPtr(soc,ParamWithEarlyWarning);
   bool ChargeRateCheck = BatteryChargeRate_FncPtr(chargeRate,ParamWithEarlyWarning);
@@ -112,34 +115,34 @@ bool batteryIsOk(float temperature, float soc, float chargeRate, EarlyWarningFor
 
 int main() {
   /* Early warning not requested: Testcases to check that early warning is not given even though tolerance limit approached */
-  assert(batteryIsOk(25, 70, 0.7,WarningForNone,&BatteryTemperature,&SOC,&BatteryChargeRate));
-  assert(batteryIsOk(0, 20, 0.7,WarningForNone,&BatteryTemperature,&SOC,&BatteryChargeRate));
-  assert(batteryIsOk(45, 80, 0.7,WarningForNone,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(batteryIsOk(25, 70, 0.7,WarningForNone,English,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(batteryIsOk(0, 20, 0.7,WarningForNone,English,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(batteryIsOk(45, 80, 0.7,WarningForNone,English,&BatteryTemperature,&SOC,&BatteryChargeRate));
   
   /* Early warning requested for all parameters: Testcases to check that early warning is not given for the parameters when tolerance limit is not approached */
-  assert(batteryIsOk(25, 70, 0.5,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(batteryIsOk(25, 70, 0.5,WarningForAll,English,&BatteryTemperature,&SOC,&BatteryChargeRate));
   
   /* Early warning requested for all parameters: Testcases to check that early warning is given for the parameters whose tolerance limit is approached */
-  assert(!batteryIsOk(0, 20, 0.0,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate)); //Low tolerance approach
+  assert(!batteryIsOk(0, 20, 0.0,WarningForAll,English,&BatteryTemperature,&SOC,&BatteryChargeRate)); //Low tolerance approach
   assert(!batteryIsOk(45, 80, 0.8,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate)); //High tolerance approach
   
   /* Early warning requested for only temperature: Testcase to check that early warning is given only for temperature even when other parameters tolerance approached */
-  assert(!batteryIsOk(0, 20, 0.7,WarningForTemperature,&BatteryTemperature,&SOC,&BatteryChargeRate)); //Low tolerance
-  assert(!batteryIsOk(45, 20, 0.7,WarningForTemperature,&BatteryTemperature,&SOC,&BatteryChargeRate)); //High tolerance
+  assert(!batteryIsOk(0, 20, 0.7,WarningForTemperature,English,&BatteryTemperature,&SOC,&BatteryChargeRate)); //Low tolerance
+  assert(!batteryIsOk(45, 20, 0.7,WarningForTemperature,English,&BatteryTemperature,&SOC,&BatteryChargeRate)); //High tolerance
   
   /* Early warning requested for only SOC: Testcase to check that early warning is given only for SOC even when other parameters tolerance approached */
-  assert(!batteryIsOk(45, 20, 0.7,WarningForSOC,&BatteryTemperature,&SOC,&BatteryChargeRate)); //Low tolerance
-  assert(!batteryIsOk(45, 80, 0.7,WarningForSOC,&BatteryTemperature,&SOC,&BatteryChargeRate)); //High tolerance
+  assert(!batteryIsOk(45, 20, 0.7,WarningForSOC,English,&BatteryTemperature,&SOC,&BatteryChargeRate)); //Low tolerance
+  assert(!batteryIsOk(45, 80, 0.7,WarningForSOC,English,&BatteryTemperature,&SOC,&BatteryChargeRate)); //High tolerance
   
   /* Early warning requested for only ChargeRate: Testcase to check that early warning is given only for ChargeRate even when other parameters tolerance approached */
-  assert(!batteryIsOk(45, 80, 0.0,WarningForSOC,&BatteryTemperature,&SOC,&BatteryChargeRate)); //Low tolerance
-  assert(!batteryIsOk(45, 80, 0.8,WarningForSOC,&BatteryTemperature,&SOC,&BatteryChargeRate)); //High tolerance
+  assert(!batteryIsOk(45, 80, 0.0,WarningForSOC,English,&BatteryTemperature,&SOC,&BatteryChargeRate)); //Low tolerance
+  assert(!batteryIsOk(45, 80, 0.8,WarningForSOC,English,&BatteryTemperature,&SOC,&BatteryChargeRate)); //High tolerance
   
   /* Testcases to check whether early warning is not given when the parameters are out of range */
-  assert(!batteryIsOk(50, 85, 0,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
-  assert(!batteryIsOk(46, 70, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
-  assert(!batteryIsOk(-1, 70, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
-  assert(!batteryIsOk(10, 18, 0.8,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
-  assert(!batteryIsOk(10, 81, 0.7,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
-  assert(!batteryIsOk(10, 40, 0.9,WarningForAll,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(!batteryIsOk(50, 85, 0,WarningForAll,English,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(!batteryIsOk(46, 70, 0.7,WarningForAll,English,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(!batteryIsOk(-1, 70, 0.7,WarningForAll,English,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(!batteryIsOk(10, 18, 0.8,WarningForAll,English,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(!batteryIsOk(10, 81, 0.7,WarningForAll,English,&BatteryTemperature,&SOC,&BatteryChargeRate));
+  assert(!batteryIsOk(10, 40, 0.9,WarningForAll,English,&BatteryTemperature,&SOC,&BatteryChargeRate));
 }
