@@ -3,7 +3,7 @@
 
 bool IsChargeRateValid(float chargeRate)
 {
-  if(chargeRate > CHARGERATE_MAX )
+  if((chargeRate < CHARGERATE_MIN ) || (chargeRate > CHARGERATE_MAX ))
   {
     printf("Charge Rate out of range!\n");
     return false;
