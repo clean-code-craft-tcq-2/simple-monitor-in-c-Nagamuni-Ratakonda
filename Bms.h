@@ -49,3 +49,4 @@ float getHigherToleranceValue(int BatteryParameter);
 void PrintEarlyWarningForLowTolerance(int BatteryParameter);
 void PrintEarlyWarningForHighTolerance(int BatteryParameter);
 bool isEarlyWarningRequested(int BatteryParameter, EarlyWarningForBatteryParameters ParamWithEarlyWarning);
+void PrintInvalidParameterRange(int BatteryParameter);
